@@ -33,4 +33,17 @@ describe "Shopping Cart Rack App" do
       expect(last_response.body).to include("We don't have that item")
     end
   end
+
+  describe "/search" do
+
+    it "Will advise whether or not the searched item is in the @@items list" do
+      Application.class_variable_set(:@@items, ["Figs", "Oranges"])
+      get '/search?q=Bananas'
+      expect(last_response.body).to include("Couldn't find Bananas")
+    end
+  end
 end
+
+# wrote an additional test for /search path. noticed that my add item method was
+# not passing - realized it was because the key in the test was set to 'item', whereas
+# my key was set to 'i'
