@@ -13,6 +13,7 @@ describe "Shopping Cart Rack App" do
 
     it "responds with a cart list if there is something in there" do
       Application.class_variable_set(:@@cart, ["Apples","Oranges"])
+      
       get '/cart'
       expect(last_response.body).to include("Apples\nOranges")
     end
