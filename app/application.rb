@@ -50,8 +50,4 @@ class Application
   end
 end
 
-#key item for get, and value is the entered
-#elsif req.path.match(/add/)
- #     search_term = req.params["item"]
-  #      if @@items.include? (search_term)
-   #       resp.write "#{search_term}"
+
