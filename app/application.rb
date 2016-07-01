@@ -33,6 +33,7 @@ class Application
       resp.write handle_search(search_term)
     else
       resp.write "Path Not Found"
+      resp.status = 404
     end
 
     resp.finish
