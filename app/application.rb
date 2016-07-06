@@ -29,7 +29,7 @@ class Application
       if @@items.include?(added_item)
         @@cart << added_item
         resp.write "added #{added_item}"
-       binding.pry
+       
       else
         resp.write "We don't have that item"
       end
