@@ -11,6 +11,7 @@ class Application
       @@items.each do |item|
         resp.write "#{item}\n"
       end
+
     # --Below is.equal_to (search?q=Apples)
     # --You are making a search query with search as the path and q=item as the search query
     elsif req.path.match(/search/)
@@ -18,6 +19,7 @@ class Application
       search_term = req.params["q"]
       # --responds with a cart list if there is something in there
       resp.write handle_search(search_term)
+
       # --below is.equal_to == cart (so you are displaying what is inside the cart)
     elsif req.path.match(/cart/) # the path
       # --responds with empty cart message if the cart is empty
@@ -28,6 +30,7 @@ class Application
           resp.write "#{cart_item}\n"
         end
       end
+
       # --below is.equal_to == (add?item=Apples)
     elsif req.path.match(/add/) # --the path == (add?)
       # -- making a GET request (the GET parameters) below
