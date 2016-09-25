@@ -22,10 +22,10 @@ class Application
 
 
     if req.path.match(/cart/)
-      search_term = req.params["key"]
       @@cart.each do |cart_item|
         resp.write "#{cart_item}\n"
       end
+
     elsif @@items.include?(search_term)
       @@cart << search_term
       resp.write "added #{search_term}"
@@ -45,6 +45,16 @@ class Application
       return "Couldn't find #{search_term}"
     end
   end
+
+  #if cart
+	#cart code
+#elsif add
+	#add code
+#elsif items
+	#items code
+#else
+	#whatever
+#send
 
 
 end
