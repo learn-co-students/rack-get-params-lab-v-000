@@ -1,6 +1,7 @@
 class Application
 
   @@items = ["Apples","Carrots","Pears"]
+  @@cart = []
 
   def call(env)
     resp = Rack::Response.new
@@ -16,6 +17,26 @@ class Application
     else
       resp.write "Path Not Found"
     end
+
+    if @@cart.empty?
+      resp.write "Your cart is empty"
+    end
+    else req.path.match(/cart/)
+      @@cart.each do |c|
+        resp.write "#{c}\n"
+    end
+
+    if req.path.match(/add/)
+      search_item = req.params["item"]
+    end
+    elsif @@items.include?(search_item)
+      @@cart << search_item
+      resp.write "added #{search_item}"
+    else
+      resp.write "We don't have that item"
+    end
+
+  end
 
     resp.finish
   end
