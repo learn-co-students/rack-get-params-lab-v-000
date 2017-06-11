@@ -1,0 +1,15 @@
+require_relative './config/environment'
+
+namespace :basic do
+
+desc 'this reloads the whole library'
+def reload!
+    load_all './lib'
+    end
+
+desc 'this starts pry'
+task :console do
+	 Pry.start
+    end
+    
+end
