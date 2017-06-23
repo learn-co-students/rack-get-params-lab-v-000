@@ -44,11 +44,11 @@ class Application
 
   def add_item
     if @@items.include?(add_item)
-        @@items << add_item
-        return @@items.join("\n")
+       @@items << add_item
+       return "added"join(" ")@@items
       #return @@cart.join|add_item|
     else
-      return "We don't have that item"
+       return "We don't have that item"
     end
   end
 
