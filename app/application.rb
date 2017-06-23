@@ -45,7 +45,7 @@ class Application
   def add_item
     if @@items.include?(add_item)
        @@items << add_item
-       return "added"join(" ")@@items
+       resp.write "added #{add_item}"
       #return @@cart.join|add_item|
     else
        return "We don't have that item"
