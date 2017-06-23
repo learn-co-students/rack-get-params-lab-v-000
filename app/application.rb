@@ -24,8 +24,9 @@ class Application
 #Create a new route called /add that takes in a GET param with the key item
 #This should check to see if that item is in @@items and then add it to the cart if it is. Otherwise give an error
     elsif req.path.match(/add/)
-      add_item = req.params["item"]
-      resp.write add_item
+      requested_add_item = req.params["item"]
+
+      resp.write add_item(item_to_be_added) #"added #{requested_add_item}"
 
     else
       resp.write "Path Not Found"
@@ -42,11 +43,11 @@ class Application
     end
   end
 
-  def add_item
-    if @@items.include?(add_item)
-       @@items << add_item
-       resp.write "added #{add_item}"
-      #return @@cart.join|add_item|
+  def add_item(item_to_be_added)
+    if @@items.include?(item_to_be_added)
+       @@cart << item_to_be_added
+
+      "added #{item_to_be_added}"
     else
        return "We don't have that item"
     end
@@ -59,4 +60,5 @@ class Application
       return "Couldn't find #{search_term}"
     end
   end
+
 end
