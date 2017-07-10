@@ -12,7 +12,7 @@ class Application
         resp.write "#{item}\n"
       end
     elsif req.path.match(/cart/)
-      if @@cart.length == 0
+      if @@cart.empty?
         resp.write "Your cart is empty"
       else
         @@cart.each do |item|
@@ -33,6 +33,7 @@ class Application
     else
       resp.write "Path Not Found"
     end
+
     resp.finish
   end
 
