@@ -1,4 +1,5 @@
 require_relative './spec_helper'
+require 'pry'
 
 describe "Shopping Cart Rack App" do
   def app()
@@ -8,7 +9,9 @@ describe "Shopping Cart Rack App" do
     it "responds with empty cart message if the cart is empty" do
       Application.class_variable_set(:@@cart, [])
       get '/cart'
+      #binding.pry
       expect(last_response.body).to include("Your cart is empty")
+
     end
 
     it "responds with a cart list if there is something in there" do
