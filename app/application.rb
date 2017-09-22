@@ -15,7 +15,6 @@ class Application
     elsif req.path.match(/search/)
       search_term = req.params["q"]
       resp.write handle_search(search_term)
-
     elsif @@cart.empty?
       resp.write "Your cart is empty"
 
@@ -23,7 +22,8 @@ class Application
       @@cart.each{|item| resp.write "#{item}\n"}
 
     elsif req.path.match(/add/)
-      search_term = req.params.values.join
+      search_term = req.params["item"]
+      
        if handle_search(search_term).include?("is one of our items")
           @@cart<<search_term
           resp.write "added Figs"
