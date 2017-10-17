@@ -36,7 +36,7 @@ class Application
         resp.write "#{cart_item}\n"
       end
       else
-        @@cart
+        return @@cart
       end
     end
 end
