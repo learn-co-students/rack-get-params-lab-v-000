@@ -1,6 +1,8 @@
+
 class Application
 
   @@items = ["Apples","Carrots","Pears"]
+  @@cart = []
 
   def call(env)
     resp = Rack::Response.new
@@ -27,4 +29,14 @@ class Application
       return "Couldn't find #{search_term}"
     end
   end
+
+  def shopping_cart_rack_app
+    if req.path.match(/cart/)
+      @@cart.collect do |cart_item|
+        resp.write "#{cart_item}\n"
+      end
+      else
+        @@cart
+      end
+    end
 end
