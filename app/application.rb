@@ -15,6 +15,10 @@ class Application
     elsif req.path.match(/search/)
       search_term = req.params["q"]
       resp.write handle_search(search_term)
+    elsif  req.path.match(/cart/)
+      @@cart.collect do |cart_item|
+        resp.write "#{cart_item}\n"
+      end
     else
       resp.write "Path Not Found"
     end
@@ -30,13 +34,13 @@ class Application
     end
   end
 
-  def shopping_cart_rack_app
-    if req.path.match(/cart/)
-      @@cart.collect do |cart_item|
-        resp.write "#{cart_item}\n"
-      end
-      else
-        return @@cart
-      end
-    end
+  # def shopping_cart_rack_app
+  #   if req.path.match(/cart/)
+  #     @@cart.collect do |cart_item|
+  #       resp.write "#{cart_item}\n"
+  #     end
+  #     else
+  #       return @@cart
+  #     end
+  #   end
 end
