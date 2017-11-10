@@ -16,7 +16,7 @@ describe "Shopping Cart Rack App" do
       get '/cart'
       expect(last_response.body).to include("Apples\nOranges")
     end
-  end
+  end 
 
   describe "/add" do
 
