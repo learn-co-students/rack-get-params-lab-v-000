@@ -1,5 +1,3 @@
-require "pry"
-
 class Application
 
   @@items = ["Apples","Carrots","Pears"]
@@ -34,9 +32,9 @@ class Application
 
   def handle_search(search_term)
     if search(search_term)
-      return "#{search_term} is one of our items"
+      "#{search_term} is one of our items"
     else
-      return "Couldn't find #{search_term}"
+      "Couldn't find #{search_term}"
     end
   end
 
@@ -47,10 +45,9 @@ class Application
   def handle_add_item(add_item)
     if search(add_item)
       @@cart << add_item
-      return "added #{add_item}"
+      "added #{add_item}"
     else
-      return "We don't have that item"
+      "We don't have that item"
     end
-    binding.pry
   end
 end
