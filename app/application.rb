@@ -23,7 +23,7 @@ class Application
         @@cart.each{|i| resp.write "#{i}\n"}
       end
     elsif req.path.match(/add/)
-      add_item = req.params["p"]
+      add_item = req.params["item"]
       resp.write handle_add_item(add_item)
     else
       resp.write "Path Not Found"
@@ -47,9 +47,9 @@ class Application
   def handle_add_item(add_item)
     if search(add_item)
       @@cart << add_item
-      "added #{add_item}"
+      return "added #{add_item}"
     else
-      "We don't have that item"
+      return "We don't have that item"
     end
     binding.pry
   end
