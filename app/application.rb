@@ -45,7 +45,7 @@ class Application
   def handle_item(item_term)
     if @@items.include?(item_term)
       @@cart << item_term
-      "added Figs"
+      "added #{item_term}"
     else
       "We don't have that item"
     end
