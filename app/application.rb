@@ -17,6 +17,9 @@ class Application
       @@cart.empty? ? 
         (resp.write"Your cart is empty") : 
         (resp.write @@cart.join("\n"))
+    elsif req.path.match(/add/)
+      desired_item = req.params["item"]
+      resp.write handle_add(desired_item)
     else
       resp.write "Path Not Found"
     end
@@ -29,6 +32,15 @@ class Application
       return "#{search_term} is one of our items"
     else
       return "Couldn't find #{search_term}"
+    end
+  end
+
+  def handle_add(desired_item)
+    if @@items.include?(desired_item)
+      @@cart << desired_item
+      return "added #{desired_item}"
+    else
+      return "We don't have that item"
     end
   end
 end
