@@ -13,6 +13,10 @@ class Application
     elsif req.path.match(/search/)
       search_term = req.params["q"]
       resp.write handle_search(search_term)
+    elsif req.path.match(/cart/)
+      @@cart.empty? ? 
+        (resp.write"Your cart is empty") : 
+        (resp.write @@cart.join("\n"))
     else
       resp.write "Path Not Found"
     end
