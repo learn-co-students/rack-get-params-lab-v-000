@@ -28,6 +28,7 @@ class Application
       cart_search = req.params["item"]
       #binding.pry
       if @@items.include?(cart_search)
+        @@cart << cart_search
         resp.write "added #{cart_search}"
       else
         resp.write "We don't have that item"
