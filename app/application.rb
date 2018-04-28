@@ -24,13 +24,14 @@ class Application
             end
        end
   elsif req.path.match(/add/)
-      add_search_term = req.params["item"] #= Figs
-      binding.pry
-      if @@items.include?(add_search_term)
+      add_search_term = req.params["item"]
+    if @@items.include?(add_search_term)
           @@cart << add_search_term
           resp.write "added #{add_search_term}"
-      end
-      binding.pry
+
+    else
+            resp.write "We don't have that item"
+    end
   elsif req.path.match(/search/)
       search_term = req.params["q"]
       resp.write handle_search(search_term)
