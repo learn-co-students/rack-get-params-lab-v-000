@@ -3,6 +3,7 @@ require 'pry'
 class Application
 
   @@items = ["Apples","Carrots","Pears"]
+
   @@cart = []
 
   def call(env)
@@ -15,7 +16,6 @@ class Application
       end
     elsif req.path.match(/search/)
       search_term = req.params["q"]
-      # binding.pry
       resp.write handle_search(search_term)
     elsif req.path.match(/cart/)
       if @@cart.empty?
@@ -25,9 +25,7 @@ class Application
           resp.write "#{item}\n"
         end
       end
-      # Create a new route called /add that takes in a GET param with the
-      # key item. This should check to see if that item is in @@items and
-      # then add it to the cart if it is. Otherwise give an error
+
     elsif req.path.match(/add/)
       item_to_add = req.params["item"]
       if @@items.include? item_to_add
@@ -36,7 +34,6 @@ class Application
       else
         resp.write "We don't have that item!"
       end
-
     else
       resp.write "Path Not Found"
     end
