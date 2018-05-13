@@ -25,7 +25,12 @@ class Application
       end
 
     when /add/
-      binding.pry
+      if @@items.include?(req.params['item'])
+        @@cart << req.params['item']
+        resp.write "added #{req.params['item']}\n"
+      else
+        resp.write("We don't have that item")
+      end
 
     else
       resp.write "Path Not Found"
