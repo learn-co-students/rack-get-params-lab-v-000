@@ -1,6 +1,6 @@
 require_relative './spec_helper'
 
-describe "Shopping Cart Rack App" do
+puts describe "Shopping Cart Rack App" do
   def app()
     Application.new
   end
