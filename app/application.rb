@@ -27,17 +27,14 @@ class Application
         resp.write "#{item}\n"
       end
     end
-
+#binding.pry
     if req.path.match(/add/)
-      @@items.each do |item|
-        #binding.pry
-        if @@items.include?(item)
-          @@cart << item
-          resp.write "added #{item}"
-          binding.pry
-        else
-          resp.write "We don't have that item"
-        end
+      add_item = req.params["item"]
+      if @@items.include?(add_item)
+        @@cart << add_item
+        resp.write "added #{add_item}"
+      else
+        resp.write "We don't have that item"
       end
     end
 
