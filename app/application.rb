@@ -1,3 +1,5 @@
+require "pry"
+
 class Application
 
   @@items = ["Apples","Carrots","Pears"]
@@ -22,6 +24,14 @@ class Application
         @@cart.each do |item|
         resp.write "#{item}\n"
         end
+      end
+    elsif req.path.match(/add/)
+      # binding.pry
+      if @@items.include? req.params["item"]
+        @@cart << req.params["item"]
+        resp.write "added #{req.params["item"]}"
+      else
+        resp.write "We don't have that item"
       end
     else
       resp.write "Path Not Found"
