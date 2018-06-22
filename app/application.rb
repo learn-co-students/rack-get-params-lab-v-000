@@ -15,8 +15,14 @@ class Application
       search_term = req.params["q"]
       resp.write handle_search(search_term)
     elsif req.path.match(/add/)
-      search_term = req.params["search_term"]
+      if @@items.include?("item")
+        @@cart << search_term
+        return "added #{search_term}"
+      else
+        return "Couldn't find #{search_term}"
+      end
         resp.write handle_cart(search_term)
+              binding.pry
     elsif req.path.match(/cart/)
       if @@cart != []
       @@cart.each do |item|
@@ -41,12 +47,12 @@ class Application
     end
   end
 
-  def handle_cart(search_term)
-    if @@items.include?(search_term)
-      @@cart << search_term
-      return "added #{search_term}"
-    else
-      return "Couldn't find #{search_term}"
-    end
+  # def handle_cart(search_term)
+  #   if @@items.include?(search_term)
+  #     @@cart << search_term
+  #     return "added #{search_term}"
+  #   else
+  #     return "Couldn't find #{search_term}"
+  #   end
   end
 end
