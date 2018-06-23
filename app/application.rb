@@ -7,21 +7,22 @@ class Application
     resp = Rack::Response.new
     req = Rack::Request.new(env)
 
-    if req.path.match(/items/)
-      @@items.each do |item|
-        resp.write "#{item}\n"
-      end
+    # if req.path.match(/items/)
+    #   @@items.each do |item|
+    #     resp.write "#{item}\n"
+    #   end
 
-    elsif req.path.match(/search/)
+    if req.path.match(/search/)
       search_term = req.params["q"]
       resp.write handle_search(search_term)
 
     elsif req.path.match(/cart/)
       if @@cart != []
         # binding.pry # @@cart => ["Apples", "Oranges"]
-        @@cart.each do |i|
-        resp.write "#{i}\n"
-        end
+        # @@cart.each do |i|
+        # resp.write "#{i}\n"
+        resp.write "#{@@cart[0]}\n#{@@cart[1]}"
+        # end
       else
         resp.write "Your cart is empty"
       end
