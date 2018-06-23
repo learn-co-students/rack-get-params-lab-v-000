@@ -11,27 +11,35 @@ class Application
       @@items.each do |item|
         resp.write "#{item}\n"
       end
+
     elsif req.path.match(/search/)
       search_term = req.params["q"]
       resp.write handle_search(search_term)
-    elsif req.path.match(/add/)
-      if @@items.include?("item")
-        @@cart << search_term
-        return "added #{search_term}"
-      else
-        return "Couldn't find #{search_term}"
-      end
-        resp.write handle_cart(search_term)
-              binding.pry
+
     elsif req.path.match(/cart/)
       if @@cart != []
-      @@cart.each do |item|
-        resp.write "#{item}\n"
-      # binding.pry
-      end
+        # binding.pry # @@cart => ["Apples", "Oranges"]
+        @@cart.each do |i|
+        resp.write "#{i}\n"
+        end
       else
         resp.write "Your cart is empty"
       end
+
+    elsif req.path.match(/add/)
+      # @@cart = []
+      item = req.params["item"]
+      # binding.pry #  @@items == ["Figs", "Oranges"], item == "Figs"
+
+      if @@items.include?(item)
+        @@cart << item
+              # binding.pry # @@items == ["Figs", "Oranges"], item == "Figs", @@cart == ["Figs"]
+        return "added #{item}"
+      else
+        return "Couldn't find #{item}"
+      end
+        # resp.write handle_cart(item)
+
     else
       resp.write "Path Not Found"
     end
@@ -54,5 +62,5 @@ class Application
   #   else
   #     return "Couldn't find #{search_term}"
   #   end
-  end
+  # end
 end
