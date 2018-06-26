@@ -18,7 +18,6 @@ class Application
 
     elsif req.path.match(/cart/)
       if @@cart != []
-        # binding.pry # @@cart => ["Apples", "Oranges"]
         @@cart.each do |i|
         resp.write "#{i}\n"
         resp.write "#{@@cart[0]}\n#{@@cart[1]}"
@@ -28,18 +27,13 @@ class Application
       end
 
     elsif req.path.match(/add/)
-      # @@cart = []
       item = req.params["item"]
-      # binding.pry #  @@items == ["Figs", "Oranges"], item == "Figs"
-# binding.pry
       if @@items.include?(item)
         @@cart << item
-      #         # binding.pry # @@items == ["Figs", "Oranges"], item == "Figs", @@cart == ["Figs"]
         resp.write "added #{item}"
       else
-        return "Couldn't find #{item}"
+        resp.write "We don't have that item"
       end
-        # resp.write handle_cart(item)
 
     else
       resp.write "Path Not Found"
@@ -55,13 +49,4 @@ class Application
       return "Couldn't find #{search_term}"
     end
   end
-
-  # def handle_cart(search_term)
-  #   if @@items.include?(search_term)
-  #     @@cart << search_term
-  #     return "added #{search_term}"
-  #   else
-  #     return "Couldn't find #{search_term}"
-  #   end
-  # end
 end
