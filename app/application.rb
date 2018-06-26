@@ -28,16 +28,16 @@ class Application
       end
 
     elsif req.path.match(/add/)
-      @@cart = []
+      # @@cart = []
       item = req.params["item"]
       # binding.pry #  @@items == ["Figs", "Oranges"], item == "Figs"
-
+# binding.pry
       if @@items.include?(item)
         @@cart << item
-              # binding.pry # @@items == ["Figs", "Oranges"], item == "Figs", @@cart == ["Figs"]
-        return "added #{item}"
-      else
-        return "Couldn't find #{item}"
+      #         # binding.pry # @@items == ["Figs", "Oranges"], item == "Figs", @@cart == ["Figs"]
+        resp.write "added #{item}"
+      # else
+      #   return "Couldn't find #{item}"
       end
         # resp.write handle_cart(item)
 
