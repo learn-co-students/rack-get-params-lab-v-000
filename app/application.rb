@@ -1,6 +1,7 @@
 class Application
 
   @@cart = []
+  @@items = []
 
   def call(env)
     resp = Rack::Response.new
@@ -17,6 +18,7 @@ class Application
       if @@cart.include?(add_item)
         resp.write "added #{add_item}"
       else
+        @@items << add_item
         resp.write "We don't have that item"
       end
     else
