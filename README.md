@@ -1,4 +1,4 @@
-# Rack Routes and GET Params
+## Rack Routes and GET Params
 
 We've provided the code for a basic list of items. Now it's your turn to extend it.
 
