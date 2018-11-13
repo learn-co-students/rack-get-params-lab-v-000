@@ -34,37 +34,20 @@ class Application
       
       add_item = req.params["item"]
       
-      if !@@cart.include?(add_item)
+      if @@items.include?(add_item)
         @@cart << add_item
         resp.write "added #{add_item}"
       else
-        resp.write "We don't have that item"
+        resp.write "We don't have that item."
       end
       
-      #@@cart << add_item if !@@cart.include?(add_item)
-    
-    
+      add_item = req.params["item"]
+      
+      
     ### Path Not Found
     else
       resp.write "Path Not Found"
     end
-    
-    
-    # respond with a cart list if there is something in there
-    #if @@cart == true
-    #  @@cart.each do |item|
-    #    resp.write "#{item}"
-    #  end
-    #end
-    
-    
-    # respond with empty cart message if the cart is empty
-    #if @@cart.empty?
-    #  resp.write "Your cart is empty"
-    # respond with a cart list if there is something in there
-    #else
-    #  resp.write "#{@@cart}"
-    #end
     
     resp.finish
   end
@@ -79,12 +62,3 @@ class Application
   
   
 end
-
-
-    #search_term = req.params["q"]
- 
-    #if @@items.include?(search_term)
-      #resp.write "#{search_term} is one of our items"
-    #else
-      #resp.write "Couldn't find #{search_term}"
-    #end
