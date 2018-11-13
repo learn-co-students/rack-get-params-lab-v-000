@@ -41,8 +41,6 @@ class Application
         resp.write "We don't have that item."
       end
       
-      add_item = req.params["item"]
-      
       
     ### Path Not Found
     else
