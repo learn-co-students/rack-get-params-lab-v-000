@@ -22,16 +22,14 @@ class Application
         resp.write "#{c_item}\n"
       end
     end
-    elsif req.path.match(/add/)
-      @@items.each do |item|
-        @@cart << item
-        @@cart.each do |c_item|
-        resp.write "added #{c_item}\n"
+ elsif req.path.match(/add/)
+    add_item = req.params["item"]
+    if @@items.include?(add_item)
+        @@cart << add_item
+        resp.write "added #{add_item}"
+      else
+        resp.write "We don't have that item"
       end
-        
-        
-      end
-    else
       resp.write "Path Not Found"
     end
 
