@@ -1,21 +1,38 @@
+
+
 class Application
 
   @@items = ["Apples","Carrots","Pears"]
+  @@cart = []
 
   def call(env)
     resp = Rack::Response.new
     req = Rack::Request.new(env)
 
     if req.path.match(/items/)
-      @@items.each do |item|
-        resp.write "#{item}\n"
-      end
+          @@items.each do |item|
+            resp.write "#{item}\n"
+          end
     elsif req.path.match(/search/)
       search_term = req.params["q"]
       resp.write handle_search(search_term)
+    elsif req.path.match(/cart/)
+                 if @@cart.empty?
+                     resp.write "Your cart is empty"
+                 else
+                    @@cart.each do |cart|
+                      resp.write "#{cart}\n"
+                     end
+                 end
+    elsif req.path.match(/add/)
+          binding.pry
+
     else
       resp.write "Path Not Found"
     end
+
+
+  # */----------end guessing code------/*
 
     resp.finish
   end
