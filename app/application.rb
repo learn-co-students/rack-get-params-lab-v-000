@@ -24,15 +24,13 @@ class Application
   
 
     if req.path.match(/add/)
-     item_exists = req.params["item"]
-     @@items.each do |i|
-       if i == item_exists
-         @@cart << i
-         resp.write "added #{i}"
+      item_to_add = req.params["item"]
+      if @@items.include? item_to_add
+        @@cart << item_to_add
+        resp.write "added #{item_to_add}"
        else
          resp.write "We don't have that item"
        end
-      end
     end
 
 
