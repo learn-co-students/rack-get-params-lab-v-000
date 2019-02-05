@@ -1,6 +1,7 @@
 class Application
 
   @@items = ["Apples","Carrots","Pears"]
+  @@cart = []
 
   def call(env)
     resp = Rack::Response.new
@@ -27,4 +28,11 @@ class Application
       return "Couldn't find #{search_term}"
     end
   end
+  
+  def cart
+    if @@cart.size == 0
+      resp.write "Your cart is empty"
+    end
+  end
+  
 end
