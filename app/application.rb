@@ -14,6 +14,18 @@ class Application
     elsif req.path.match(/search/)
       search_term = req.params["q"]
       resp.write handle_search(search_term)
+      
+    elsif req.path.match(/cart/)
+      if @@cart.size == 0
+        resp.write "Your cart is empty"
+      else
+        @@cart.each do |c|
+          resp.write "#{c}\n"
+        end
+      end
+    
+    elsif req.path.match(/add/)
+    
     else
       resp.write "Path Not Found"
     end
@@ -26,12 +38,6 @@ class Application
       return "#{search_term} is one of our items"
     else
       return "Couldn't find #{search_term}"
-    end
-  end
-  
-  def cart
-    if @@cart.size == 0
-      resp.write "Your cart is empty"
     end
   end
   
