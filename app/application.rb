@@ -41,6 +41,15 @@ class Application
     end
     return header
   end
+  
+  # def display_cart
+  #   if @@cart.empty?
+  #     return "Your cart is empty."
+  #   else
+  #     @@cart.each do |item|
+  #       "#{item}\n"
+  #   end
+  # end
 
   def handle_search(search_term)
     if @@items.include?(search_term)
