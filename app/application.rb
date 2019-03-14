@@ -44,7 +44,7 @@ class Application
   def add_item(item_to_add)
     if @@items.include?(item_to_add)
       @@cart << item_to_add
-      return "added Figs"
+      return "added #{item_to_add}"
     else
       return "We don't have that item"
     end
