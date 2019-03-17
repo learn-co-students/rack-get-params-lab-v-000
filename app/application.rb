@@ -1,6 +1,6 @@
 class Application
 
-  @@items = ["Apples","Carrots","Pears"]
+  @@items = ["Apples","Carrots","Pears"] #class variable
   @@cart = []
 
 
@@ -37,32 +37,23 @@ class Application
       return "Your cart is empty."
     end
     header = "" 
-    @@cart.each.with_index do |item, index|
+    @@cart.each do |item|
       header += "#{item}\n"
     end
     return header
   end
   
-  # def display_cart
+    # def display_cart
   #   if @@cart.empty?
   #     return "Your cart is empty."
-  #   else
-  #     @@cart.each do |item|
-  #       "#{item}\n"
   #   end
+  #   header = "" # "Your cart items are:\n ---------------------\n"
+  #   @@cart.each.with_index do |item, index|
+  #     # header += "#{index + 1}. #{item}\n"
+  #     header += "#{item}\n"
+  #   end
+  #   return header
   # end
-
-  def display_cart
-    if @@cart.empty?
-      return "Your cart is empty."
-    end
-    header = "" # "Your cart items are:\n ---------------------\n"
-    @@cart.each.with_index do |item, index|
-      # header += "#{index + 1}. #{item}\n"
-      header += "#{item}\n"
-    end
-    return header
-  end
 
   def handle_search(search_term)
     if @@items.map{|i| i.downcase}.include?(search_term.downcase)
