@@ -1,7 +1,8 @@
 class Application
 
   @@items = ["Apples","Carrots","Pears"]
-  @@carts = []
+  @@cart = []
+
 
   def call(env)
     resp = Rack::Response.new
@@ -51,8 +52,20 @@ class Application
   #   end
   # end
 
+  def display_cart
+    if @@cart.empty?
+      return "Your cart is empty."
+    end
+    header = "" # "Your cart items are:\n ---------------------\n"
+    @@cart.each.with_index do |item, index|
+      # header += "#{index + 1}. #{item}\n"
+      header += "#{item}\n"
+    end
+    return header
+  end
+
   def handle_search(search_term)
-    if @@items.include?(search_term)
+    if @@items.map{|i| i.downcase}.include?(search_term.downcase)
       return "#{search_term} is one of our items"
     else
       return "Couldn't find #{search_term}"
