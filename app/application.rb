@@ -7,14 +7,8 @@ class Application
     resp = Rack::Response.new
     req = Rack::Request.new(env)
 
-    if req.path.match(/items/)
-      @@items.each do |item|
-        resp.write "#{item}\n"
-      end
-    # elsif req.path.match(/search/)
-    #   search_term = req.params["q"]
-    #   resp.write handle_search(search_term)
-    elsif req.path.match(/cart/)
+    case req.path
+    when /cart/
       if @@cart.empty?
         resp.write "Your cart is empty"
       else
@@ -22,8 +16,7 @@ class Application
           resp.write "#{item}\n"
         end
       end
-
-    elsif req.path.match(/add/)
+    when /add/
       search_term = req.params["item"]
       if @@items.include?(search_term)
         @@cart << search_term
@@ -33,13 +26,5 @@ class Application
       end
     end
     resp.finish
-  end
-
-  def handle_search(search_term)
-    if @@items.include?(search_term)
-      return "#{search_term} is one of our items"
-    else
-      return "Couldn't find #{search_term}"
-    end
   end
 end
