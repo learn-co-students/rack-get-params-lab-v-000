@@ -27,6 +27,19 @@ class Application
       resp.write "Your cart is empty"
     end
 
+    if req.path.match(/add/)
+
+      search_term = req.params["item"]
+
+      if @@items.include?(search_term)
+        @@cart << search_term
+        resp.write "added #{search_term}"
+      else
+        resp.write "We don't have that item"
+      end
+
+    end
+
     resp.finish
   end
 
