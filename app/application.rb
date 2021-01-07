@@ -14,8 +14,6 @@ class Application
            @@items << search_term
         end
 
-end
-
     if req.path.match(/items/)
       @@items.each do |item|
         resp.write "#{item}\n"
@@ -47,3 +45,4 @@ end
       return "Couldn't find #{search_term}"
     end
   end
+end
