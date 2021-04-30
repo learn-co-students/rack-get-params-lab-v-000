@@ -17,15 +17,14 @@ class Application
     else
       resp.write "Path Not Found"
     end
-
-    # if req.path.match(/cart/)
+    
     if @@cart.empty?
       resp.write "Your cart is empty"
     else
-      @@cart
-      # @@cart.map do |c|
-      #   resp.write "#{c}\n"
-      # end
+      # @@cart
+      @@cart.map do |c|
+        resp.write "#{c}\n"
+      end
     end 
 
     resp.finish
