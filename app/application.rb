@@ -21,19 +21,28 @@ class Application
     if req.path.match(/cart/)
       if @@cart.empty?
         resp.write "Your cart is empty"
+      # else
+      #   @@cart.map do |c|
+      #     resp.write "#{c}\n"
+      #   end
+      elsif req.path.match(/add/)
+        search_term = req.params("item")
+        if @@items.inlcude?(search_term)
+          @@cart << search_term
+        end
       else
         @@cart.map do |c|
           resp.write "#{c}\n"
         end
       end
     end 
-
-    if req.path.match(/add/)
-      search_term = req.params["item"]
-      if @@items.include?(search_term)
-        @@cart << search_term
-      end
-    end
+    
+    # if req.path.match(/add/)
+    #   item = req.params["item"]
+    #   @@items.include?(item)
+    #   @@cart << item
+      
+    # end
 
     resp.finish
   end
