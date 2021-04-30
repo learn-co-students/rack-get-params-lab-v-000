@@ -17,11 +17,10 @@ class Application
     else
       resp.write "Path Not Found"
     end
-    
+
     if @@cart.empty?
       resp.write "Your cart is empty"
     else
-      # @@cart
       @@cart.map do |c|
         resp.write "#{c}\n"
       end
