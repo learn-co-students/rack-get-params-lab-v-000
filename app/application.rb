@@ -28,6 +28,14 @@ class Application
       end
     end 
 
+    if req.path.match(/add/)
+      search_term = req.params["item"]
+      # resp.write handle_search(search_term)
+      if @@items.include?(search_term)
+        @@cart << search_term
+      end
+    end
+
     resp.finish
   end
 
