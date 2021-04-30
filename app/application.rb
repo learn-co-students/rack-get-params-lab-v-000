@@ -30,7 +30,7 @@ class Application
 
     if req.path.match(/add/)
       search_term = req.params["item"]
-      if @@items.include?(term)
+      if @@items.include?(search_term)
         @@cart << search_term
       end
     end
