@@ -14,14 +14,14 @@ class Application
     elsif req.path.match(/search/)
       search_term = req.params["q"]
       resp.write handle_search(search_term)
-    elsif req.path.match(/add/)
-      search_term = req.params["item"]
-      if @@items.include?(search_term)
-         @@cart << search_term
-         resp.write "added Figs"
-        else
-          resp.write "We don't have that item"
-      end
+    # elsif req.path.match(/add/)
+    #   search_term = req.params["item"]
+    #   if @@items.include?(search_term)
+    #      @@cart << search_term
+    #      resp.write "added Figs"
+    #     else
+    #       resp.write "We don't have that item"
+    #   end
     else
       resp.write "Path Not Found"
     end
@@ -46,12 +46,15 @@ class Application
       # end
     end 
     
-    # if req.path.match(/add/)
-    #   search_term = req.params["item"]
-    #   if @@items.include?(search_term)
-    #     @@cart << search_term
-    #   end
-    # end
+    if req.path.match(/add/)
+      search_term = req.params["item"]
+      if @@items.include?(search_term)
+        @@cart << search_term
+        resp.write "added Figs"
+      else
+        resp.write "We don't have that item"
+      end
+    end
 
     resp.finish
   end
